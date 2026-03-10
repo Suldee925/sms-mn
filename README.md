@@ -58,9 +58,9 @@ from sms_mn import SMSClient, MobicomProvider
 
 client = SMSClient(
     provider=MobicomProvider(
-        servicename="mms",
-        username="engineering",
-        sender="139562",
+        servicename="YOUR_SERVICE_NAME",
+        username="YOUR_NAME",
+        sender="YOUR_NUMBER",
     )
 )
 
