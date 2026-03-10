@@ -7,8 +7,6 @@ from sms_mn.exceptions import SMSValidationError
 
 from .base import BaseSMSProvider
 
-DEFAULT_MOBICOM_BASE_URL = "http://27.123.214.168/smsmt/mt"
-
 
 class MobicomProvider(BaseSMSProvider):
     name = "mobicom"
@@ -16,29 +14,29 @@ class MobicomProvider(BaseSMSProvider):
     def __init__(
         self,
         *,
+        base_url: str,
         servicename: str,
         username: str,
         sender: str,
-        base_url: str = DEFAULT_MOBICOM_BASE_URL,
     ) -> None:
+        base_url = base_url.strip()
         servicename = servicename.strip()
         username = username.strip()
         sender = sender.strip()
-        base_url = base_url.strip()
 
+        if not base_url:
+            raise SMSValidationError("`base_url` must not be empty.")
         if not servicename:
             raise SMSValidationError("`servicename` must not be empty.")
         if not username:
             raise SMSValidationError("`username` must not be empty.")
         if not sender:
             raise SMSValidationError("`sender` must not be empty.")
-        if not base_url:
-            raise SMSValidationError("`base_url` must not be empty.")
 
+        self.base_url = base_url
         self.servicename = servicename
         self.username = username
         self.sender = sender
-        self.base_url = base_url
 
     def build_request(
         self,

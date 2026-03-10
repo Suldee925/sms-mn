@@ -25,16 +25,18 @@ def test_send_success_unitel() -> None:
 @respx.mock
 def test_send_success_mobicom() -> None:
     route = respx.get(
-        "http://27.123.214.168/smsmt/mt?servicename=mms&username=engineering&from=139562&to=88111111&msg=hello"
+        "https://example.com/sms?servicename=test&username=user&from=123456&to=88111111&msg=hello"
     ).mock(return_value=httpx.Response(200, text="OK"))
 
     client = SMSClient(
         provider=MobicomProvider(
-            servicename="mms",
-            username="engineering",
-            sender="139562",
+            base_url="https://example.com/sms",
+            servicename="test",
+            username="user",
+            sender="123456",
         )
     )
+
     response = client.send("88111111", "hello")
 
     assert route.called

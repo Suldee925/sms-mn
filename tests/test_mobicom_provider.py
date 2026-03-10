@@ -3,22 +3,23 @@ from sms_mn.providers import MobicomProvider
 
 def test_mobicom_build_request() -> None:
     provider = MobicomProvider(
-        servicename="mms",
-        username="engineering",
-        sender="139562",
+        base_url="YOUR_MOBICOM_BASE_URL",
+        servicename="YOUR_SERVICE_NAME",
+        username="YOUR_USERNAME",
+        sender="YOUR_SENDER_NUMBER",
     )
 
     method, url, headers, json_body = provider.build_request(
-        to="88111111",
+        to="99112233",
         message="hello world",
     )
 
     assert method == "GET"
-    assert "http://27.123.214.168/smsmt/mt?" in url
-    assert "servicename=mms" in url
-    assert "username=engineering" in url
-    assert "from=139562" in url
-    assert "to=88111111" in url
+    assert "YOUR_MOBICOM_BASE_URL?" in url
+    assert "servicename=YOUR_SERVICE_NAME" in url
+    assert "username=YOUR_USERNAME" in url
+    assert "from=YOUR_SENDER_NUMBER" in url
+    assert "to=99112233" in url
     assert "msg=hello+world" in url
     assert headers == {}
     assert json_body is None

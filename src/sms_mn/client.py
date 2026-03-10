@@ -129,7 +129,6 @@ class AsyncSMSClient(_BaseSMSClient):
         self,
         *,
         provider: BaseSMSProvider | None = None,
-        api_key: str | None = None,
         timeout: float = DEFAULT_TIMEOUT,
         max_retries: int = DEFAULT_MAX_RETRIES,
         retry_delay: float = DEFAULT_RETRY_DELAY,
@@ -137,7 +136,6 @@ class AsyncSMSClient(_BaseSMSClient):
     ) -> None:
         super().__init__(
             provider=provider,
-            api_key=api_key,
             timeout=timeout,
             max_retries=max_retries,
             retry_delay=retry_delay,
