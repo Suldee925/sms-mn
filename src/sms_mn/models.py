@@ -12,3 +12,4 @@ class SMSResponse:
     status_code: int
     data: JSONLike
     raw_text: str
+    provider: str
