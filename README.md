@@ -155,6 +155,8 @@ except SMSNetworkError:
 
 ## Project Structure
 
+## Project Structure
+
 ```
 sms-mn
 │
@@ -166,8 +168,7 @@ sms-mn
 │     ├─ utils.py
 │     └─ providers/
 │        ├─ base.py
-│        ├─ 
-..py
+│        ├─ unitel.py
 │        └─ mobicom.py
 │
 ├─ tests/
